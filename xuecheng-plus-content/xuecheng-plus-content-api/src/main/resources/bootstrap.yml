@@ -1,0 +1,18 @@
+server:
+#  servlet:
+#    context-path: /content
+  port: 63040
+#微服务配置
+spring:
+  application:
+    name: content-api
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/xuecheng_online_content?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 2019dahucun
+# 日志文件配置路径
+logging:
+  config: classpath:log4j2.xml
+

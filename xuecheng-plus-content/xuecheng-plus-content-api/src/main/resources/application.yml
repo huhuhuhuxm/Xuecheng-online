@@ -1,0 +1,9 @@
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/xuecheng_online_content?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 2019dahucun
