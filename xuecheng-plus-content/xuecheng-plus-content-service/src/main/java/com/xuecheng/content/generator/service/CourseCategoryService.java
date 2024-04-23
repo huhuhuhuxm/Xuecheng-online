@@ -1,7 +1,10 @@
 package com.xuecheng.content.generator.service;
 
+import com.xuecheng.content.dto.CourseCategoryTreeDTO;
 import com.xuecheng.content.po.CourseCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author hxm
@@ -10,4 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CourseCategoryService extends IService<CourseCategory> {
 
+    /**
+     * 课程分类树形表查询
+     * @param id
+     * @return
+     */
+    List<CourseCategoryTreeDTO> queryTreeNodes(String id);
 }

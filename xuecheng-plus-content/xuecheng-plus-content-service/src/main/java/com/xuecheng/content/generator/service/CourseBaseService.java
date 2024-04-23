@@ -2,10 +2,9 @@ package com.xuecheng.content.generator.service;
 
 import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
-import com.xuecheng.content.dto.QueryCourseParamsDto;
+import com.xuecheng.content.dto.QueryCourseParamsDTO;
 import com.xuecheng.content.po.CourseBase;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.stereotype.Service;
 
 /**
 * @author hxm
@@ -19,5 +18,5 @@ public interface CourseBaseService extends IService<CourseBase> {
      * @param queryCourseParamsDTO
      * @return
      */
-    PageResult<CourseBase> queryCourseBaseList(PageParams pageParams, QueryCourseParamsDto queryCourseParamsDTO);
+    PageResult<CourseBase> queryCourseBaseList(PageParams pageParams, QueryCourseParamsDTO queryCourseParamsDTO);
 }

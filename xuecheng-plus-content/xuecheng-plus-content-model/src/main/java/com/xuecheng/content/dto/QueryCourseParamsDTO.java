@@ -11,7 +11,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class QueryCourseParamsDto {
+public class QueryCourseParamsDTO {
 
     //审核状态
     private String auditStatus;

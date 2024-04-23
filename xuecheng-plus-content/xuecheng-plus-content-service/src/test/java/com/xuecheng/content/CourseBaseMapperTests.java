@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
-import com.xuecheng.content.dto.QueryCourseParamsDto;
+import com.xuecheng.content.dto.QueryCourseParamsDTO;
 import com.xuecheng.content.generator.mapper.CourseBaseMapper;
 import com.xuecheng.content.po.CourseBase;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +23,7 @@ public class CourseBaseMapperTests {
     public void testCourseBaseMapper() {
         //详细进行分页查询的单元测试
         //查询条件
-        QueryCourseParamsDto courseParamsDto = new QueryCourseParamsDto();
+        QueryCourseParamsDTO courseParamsDto = new QueryCourseParamsDTO();
         courseParamsDto.setCourseName("java");//课程查询条件
 //        courseParamsDto.setAuditStatus("202004");
         //拼装查询条件
