@@ -2,6 +2,8 @@ package com.xuecheng.content.api;
 
 import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
+import com.xuecheng.content.dto.AddCourseDTO;
+import com.xuecheng.content.dto.CourseBaseInfoDTO;
 import com.xuecheng.content.dto.QueryCourseParamsDTO;
 import com.xuecheng.content.generator.service.CourseBaseService;
 import com.xuecheng.content.po.CourseBase;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/content/course")
+@RequestMapping("/content")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CourseBaseInfoController {
@@ -30,11 +32,27 @@ public class CourseBaseInfoController {
      * @param queryCourseParamsDTO
      * @return
      */
-    @PostMapping("list")
+    @PostMapping("/course/list")
     public PageResult<CourseBase> pageList(PageParams pageParams,
                                            @RequestBody(required = false) QueryCourseParamsDTO queryCourseParamsDTO) {
         log.info("开始查询");
         PageResult<CourseBase> courseBasePageResult = courseBaseService.queryCourseBaseList(pageParams, queryCourseParamsDTO);
         return courseBasePageResult;
+    }
+
+    /**
+     * 创建课程
+     * @param addCourseDTO
+     * @return
+     */
+    @PostMapping("/course")
+    public CourseBaseInfoDTO createCourseBase(@RequestBody AddCourseDTO addCourseDTO) {
+        log.info("开始新增课程");
+
+        //获取用户所属机构的id
+        Long companyId = 1232141425L;
+
+        CourseBaseInfoDTO courseBaseInfoDTO  = courseBaseService.createCourseBase(companyId, addCourseDTO);
+        return courseBaseInfoDTO;
     }
 }

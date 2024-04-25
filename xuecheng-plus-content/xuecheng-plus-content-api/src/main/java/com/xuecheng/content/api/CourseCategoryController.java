@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("/content/course-category")
+@RequestMapping("/content")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CourseCategoryController {
@@ -29,7 +29,7 @@ public class CourseCategoryController {
      * 课程分类树形表查询
      * @return
      */
-    @GetMapping("/tree-nodes")
+    @GetMapping("/course-category/tree-nodes")
     public List<CourseCategoryTreeDTO> queryTreeNodes() {
         List<CourseCategoryTreeDTO> courseCategoryTreeDTOList = courseCategoryService.queryTreeNodes("1");
         return courseCategoryTreeDTOList;

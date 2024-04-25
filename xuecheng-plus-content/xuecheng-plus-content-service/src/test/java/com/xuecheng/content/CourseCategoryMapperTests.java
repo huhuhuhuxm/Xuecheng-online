@@ -29,5 +29,18 @@ public class CourseCategoryMapperTests {
 
     }
 
+    enum Color {
+        RED,
+        GREEN,
+        BLUE
+    }
+
+    @Test
+    void testEnum() {
+        System.out.println(Color.RED);
+    }
+
 
 }
+
+
