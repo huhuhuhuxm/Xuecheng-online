@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xuecheng.base.constant.DictionaryConstant;
+import com.xuecheng.base.exception.XueChengPlusException;
 import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
 import com.xuecheng.content.dto.AddCourseDTO;
@@ -158,7 +159,7 @@ public class CourseBaseServiceImpl extends ServiceImpl<CourseBaseMapper, CourseB
         //如果课程收费，价格没有填写学需要抛出异常
         if (DictionaryConstant.CourseFees.PAID.getCode().equals(courseMarket.getCharge())) {
             if (courseMarket.getPrice() == null || courseMarket.getPrice().floatValue() <= 0) {
-                throw new RuntimeException("课程价格不能为空必须且大于0");
+                XueChengPlusException.cast("课程价格不能为空必须且大于0");
             }
         }
 

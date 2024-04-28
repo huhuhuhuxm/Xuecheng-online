@@ -1,5 +1,7 @@
 package com.xuecheng.content.api;
 
+import com.xuecheng.base.exception.ValidationGroups;
+import com.xuecheng.base.exception.XueChengPlusException;
 import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
 import com.xuecheng.content.dto.AddCourseDTO;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -46,7 +49,7 @@ public class CourseBaseInfoController {
      * @return
      */
     @PostMapping("/course")
-    public CourseBaseInfoDTO createCourseBase(@RequestBody AddCourseDTO addCourseDTO) {
+    public CourseBaseInfoDTO createCourseBase(@RequestBody @Validated(value = {ValidationGroups.Insert.class}) AddCourseDTO addCourseDTO) {
         log.info("开始新增课程");
 
         //获取用户所属机构的id
