@@ -6,6 +6,7 @@ import com.xuecheng.base.model.PageParams;
 import com.xuecheng.base.model.PageResult;
 import com.xuecheng.content.dto.AddCourseDTO;
 import com.xuecheng.content.dto.CourseBaseInfoDTO;
+import com.xuecheng.content.dto.EditCourseDTO;
 import com.xuecheng.content.dto.QueryCourseParamsDTO;
 import com.xuecheng.content.generator.service.CourseBaseService;
 import com.xuecheng.content.po.CourseBase;
@@ -58,4 +59,34 @@ public class CourseBaseInfoController {
         CourseBaseInfoDTO courseBaseInfoDTO  = courseBaseService.createCourseBase(companyId, addCourseDTO);
         return courseBaseInfoDTO;
     }
+
+
+    /**
+     * 根据id查询课程基本信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/course/{id}")
+    public CourseBaseInfoDTO selectCourseById(@PathVariable Long id) {
+        log.info("根据id={}查询课程详细信息", id);
+        CourseBaseInfoDTO  courseBaseInfoDTO = courseBaseService.selectCourseById(id);
+        return courseBaseInfoDTO;
+    }
+
+
+    /**
+     * 修改课程
+     * @param editCourseDTO
+     * @return
+     */
+    @PutMapping("/course")
+    public CourseBaseInfoDTO updateCourseBase(@RequestBody @Validated(value = {ValidationGroups.Update.class}) EditCourseDTO editCourseDTO) {
+        log.info("修改课程信息：{}", editCourseDTO);
+        //获取用户所属机构的id
+        Long companyId = 1232141425L;
+        CourseBaseInfoDTO courseBaseInfoDTO = courseBaseService.updateCourseBase(companyId, editCourseDTO);
+        return courseBaseInfoDTO;
+    }
+
+
 }
