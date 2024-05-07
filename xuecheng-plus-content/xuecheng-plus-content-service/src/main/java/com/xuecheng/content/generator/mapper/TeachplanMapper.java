@@ -1,7 +1,10 @@
 package com.xuecheng.content.generator.mapper;
 
+import com.xuecheng.content.dto.TeachplanDTO;
 import com.xuecheng.content.po.Teachplan;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
 * @author hxm
@@ -11,6 +14,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 */
 public interface TeachplanMapper extends BaseMapper<Teachplan> {
 
+    /**
+     * 课程计划查询
+     * @param courseId
+     * @return
+     */
+    List<TeachplanDTO> queryAllByCourseId(Long courseId);
 }
 
 

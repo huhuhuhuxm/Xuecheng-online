@@ -1,7 +1,10 @@
 package com.xuecheng.content.generator.service;
 
+import com.xuecheng.content.dto.TeachplanDTO;
 import com.xuecheng.content.po.Teachplan;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author hxm
@@ -10,4 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface TeachplanService extends IService<Teachplan> {
 
+    /**
+     * 根据课程id查询课程计划
+     * @param courseId
+     * @return
+     */
+    List<TeachplanDTO> queryTeachPlansBycourseId(Long courseId);
 }
