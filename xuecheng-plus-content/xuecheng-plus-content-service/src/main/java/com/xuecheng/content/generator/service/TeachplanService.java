@@ -1,5 +1,6 @@
 package com.xuecheng.content.generator.service;
 
+import com.xuecheng.content.dto.SaveTeachplanDTO;
 import com.xuecheng.content.dto.TeachplanDTO;
 import com.xuecheng.content.po.Teachplan;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -19,4 +20,23 @@ public interface TeachplanService extends IService<Teachplan> {
      * @return
      */
     List<TeachplanDTO> queryTeachPlansBycourseId(Long courseId);
+
+    /**
+     * 新增或更新课程计划
+     * @param saveTeachplanDTO
+     */
+    void saveOrUpdateTeachplan(SaveTeachplanDTO saveTeachplanDTO);
+
+    /**
+     * 根据id删除课程计划
+     * @param id
+     */
+    void deleteTeachplanById(Long id);
+
+    /**
+     * 课程计划移动
+     * @param id
+     * @param moveType
+     */
+    void moveUpOrDown(Long id, String moveType);
 }

@@ -442,7 +442,28 @@ public class DictionaryConstant {
         }
     }
 
+    /**
+     * orderby初始值
+     */
+    public static final Integer ORDERBY_INITIVAL_VALUE = 0;
 
+
+    /**
+     * 课程计划移动类型
+     */
+    public enum MoveType {
+        MOVE_UP("moveup"),
+        MOVE_DOWN("movedown");
+        private final String description;
+
+        MoveType(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+    }
 
 
 }

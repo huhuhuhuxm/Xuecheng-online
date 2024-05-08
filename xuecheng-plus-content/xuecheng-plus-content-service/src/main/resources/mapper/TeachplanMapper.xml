@@ -57,6 +57,7 @@
             <result column="two_orderby"   property="orderby" />
             <result column="two_courseId"   property="courseId" />
             <result column="two_coursePubId"   property="coursePubId" />
+            <result column="two_isPreview" property="isPreview"/>
             <association property="teachplanMedia" javaType="com.xuecheng.content.po.TeachplanMedia">
                 <result column="teachplanMeidaId"   property="id" />
                 <result column="mediaFilename"   property="mediaFilename" />
@@ -90,11 +91,12 @@
                two.orderby       two_orderby,
                two.course_id     two_courseId,
                two.course_pub_id two_coursePubId,
+               two.is_preview    two_isPreview,
                tm.media_fileName mediaFilename,
                tm.id             teachplanMeidaId,
                tm.media_id       mediaId
         from xuecheng_online_content.teachplan one
-                 inner join xuecheng_online_content.teachplan two on two.parentid = one.id
+                 left join xuecheng_online_content.teachplan two on two.parentid = one.id
                  left join xuecheng_online_content.teachplan_media tm on tm.teachplan_id = two.id
         where one.parentid = 0
           and one.course_id = #{courseId}
