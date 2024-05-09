@@ -128,6 +128,10 @@ public class TeachplanServiceImpl extends ServiceImpl<TeachplanMapper, Teachplan
                     .eq(Teachplan::getCourseId, teachplan.getCourseId())
                     .lt(Teachplan::getOrderby, orderby);
             List<Teachplan> teachplans = teachplanMapper.selectList(lambdaQueryWrapper);
+            //判断这个元素前面还有元素，没有即退出
+            if (CollectionUtils.isEmpty(teachplans)) {
+                return;
+            }
             //根据条件找到交换目标对象
             Teachplan swapTarget = teachplans.stream()
                     .filter(item -> item.getOrderby() < orderby)
@@ -147,6 +151,10 @@ public class TeachplanServiceImpl extends ServiceImpl<TeachplanMapper, Teachplan
                     .eq(Teachplan::getCourseId, teachplan.getCourseId())
                     .gt(Teachplan::getOrderby, orderby);
             List<Teachplan> teachplans = teachplanMapper.selectList(lambdaQueryWrapper);
+            //判断这个元素后面还有元素，没有即退出
+            if (CollectionUtils.isEmpty(teachplans)) {
+                return;
+            }
             //根据条件找到交换目标对象
             Teachplan swapTarget = teachplans.stream()
                     .filter(item -> item.getOrderby() > orderby)
