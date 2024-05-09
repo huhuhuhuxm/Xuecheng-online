@@ -3,6 +3,7 @@ package com.xuecheng.content.po;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -33,11 +34,13 @@ public class CourseTeacher implements Serializable {
     /**
      * 教师标识
      */
+    @NotEmpty(message = "教师名称不能为空")
     private String teacherName;
 
     /**
      * 教师职位
      */
+    @NotEmpty(message = "教师职位不能为空")
     private String position;
 
     /**
@@ -53,7 +56,7 @@ public class CourseTeacher implements Serializable {
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
+//    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDate;
 
 
