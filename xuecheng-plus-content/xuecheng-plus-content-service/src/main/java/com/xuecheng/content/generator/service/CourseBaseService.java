@@ -44,4 +44,11 @@ public interface CourseBaseService extends IService<CourseBase> {
      * @return
      */
     CourseBaseInfoDTO updateCourseBase(Long companyId, EditCourseDTO editCourseDTO);
+
+    /**
+     * 删除课程
+     * @param id
+     * @param companyId
+     */
+    void deleteCourseById(Long id, Long companyId);
 }

@@ -52,7 +52,7 @@ public class CourseBaseInfoController {
     @PostMapping("/course")
     public CourseBaseInfoDTO createCourseBase(@RequestBody @Validated(value = {ValidationGroups.Insert.class}) AddCourseDTO addCourseDTO) {
         log.info("开始新增课程");
-
+        // TODO 后续补上用户所属机构的id
         //获取用户所属机构的id
         Long companyId = 1232141425L;
 
@@ -82,11 +82,24 @@ public class CourseBaseInfoController {
     @PutMapping("/course")
     public CourseBaseInfoDTO updateCourseBase(@RequestBody @Validated(value = {ValidationGroups.Update.class}) EditCourseDTO editCourseDTO) {
         log.info("修改课程信息：{}", editCourseDTO);
+        // TODO 后续补上用户所属机构的id
         //获取用户所属机构的id
         Long companyId = 1232141425L;
         CourseBaseInfoDTO courseBaseInfoDTO = courseBaseService.updateCourseBase(companyId, editCourseDTO);
         return courseBaseInfoDTO;
     }
 
+    /**
+     * 删除课程
+     * @param id
+     */
+    @DeleteMapping("/course/{id}")
+    public void deleteCourseById(@PathVariable Long id) {
+        log.info("删除id={}的课程", id);
+        // TODO 后续补上用户所属机构的id
+        //获取用户所属机构的id
+        Long companyId = 1232141425L;
+        courseBaseService.deleteCourseById(id, companyId);
+    }
 
 }

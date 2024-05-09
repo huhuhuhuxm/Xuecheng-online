@@ -11,13 +11,9 @@ import com.xuecheng.content.dto.AddCourseDTO;
 import com.xuecheng.content.dto.CourseBaseInfoDTO;
 import com.xuecheng.content.dto.EditCourseDTO;
 import com.xuecheng.content.dto.QueryCourseParamsDTO;
-import com.xuecheng.content.generator.mapper.CourseCategoryMapper;
-import com.xuecheng.content.generator.mapper.CourseMarketMapper;
-import com.xuecheng.content.po.CourseBase;
+import com.xuecheng.content.generator.mapper.*;
+import com.xuecheng.content.po.*;
 import com.xuecheng.content.generator.service.CourseBaseService;
-import com.xuecheng.content.generator.mapper.CourseBaseMapper;
-import com.xuecheng.content.po.CourseCategory;
-import com.xuecheng.content.po.CourseMarket;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -48,6 +44,12 @@ public class CourseBaseServiceImpl extends ServiceImpl<CourseBaseMapper, CourseB
     CourseMarketMapper courseMarketMapper;
 
     CourseCategoryMapper courseCategoryMapper;
+
+    TeachplanMapper teachplanMapper;
+
+    TeachplanMediaMapper teachplanMediaMapper;
+
+    CourseTeacherMapper courseTeacherMapper;
 
     /**
      * 课程分页查询
@@ -175,6 +177,38 @@ public class CourseBaseServiceImpl extends ServiceImpl<CourseBaseMapper, CourseB
         //查询数据库
         CourseBaseInfoDTO courseBaseInfo = this.getCourseBaseInfo(courseId);
         return courseBaseInfo;
+    }
+
+    /**
+     * 删除课程
+     * @param id
+     * @param companyId
+     */
+    @Override
+    public void deleteCourseById(Long id, Long companyId) {
+        //根据id下去查询该课程属于那个机构
+        CourseBase courseBase = courseBaseMapper.selectById(id);
+        //判断该可是否是该机构的
+        if (companyId.equals(courseBase.getCompanyId())) {
+            //删除该课程下所有关联的信息
+            //删除课程基本信息
+            courseBaseMapper.deleteById(id);
+            //删除课程营销信息
+            courseMarketMapper.deleteById(id);
+            //删除课程计划
+            LambdaQueryWrapper<Teachplan> teachplanLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            teachplanLambdaQueryWrapper.eq(Teachplan::getCourseId, id);
+            teachplanMapper.delete(teachplanLambdaQueryWrapper);
+            //删除课程计划关联信息
+            LambdaQueryWrapper<TeachplanMedia> teachplanMediaLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            teachplanMediaLambdaQueryWrapper.eq(TeachplanMedia::getCourseId, id);
+            teachplanMediaMapper.delete(teachplanMediaLambdaQueryWrapper);
+            //删除课程师资
+            LambdaQueryWrapper<CourseTeacher> courseTeacherLambdaQueryWrapper = new LambdaQueryWrapper<>();
+            courseTeacherMapper.delete(courseTeacherLambdaQueryWrapper);
+        } else {
+            XueChengPlusException.cast("只能删除本机构的课程，删除失败！！！");
+        }
     }
 
     /**
